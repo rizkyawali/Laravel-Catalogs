@@ -1,5 +1,6 @@
 @extends("template.master")
 @section("content")
+    @include('flash::message')
 
     <h2>Add New Product</h2>
 

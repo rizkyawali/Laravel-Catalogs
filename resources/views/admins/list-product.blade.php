@@ -1,5 +1,7 @@
 @extends("template.master")
 @section("content")
+    @include('flash::message')
+
         <div class="row col-lg-12">
             <table class="table table-striped">
                 <thead>

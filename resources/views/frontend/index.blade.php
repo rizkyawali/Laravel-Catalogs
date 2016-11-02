@@ -1,5 +1,6 @@
 @extends("template.master")
 @section("content")
+    @include('flash::message')
 
     <section id="pinBoot">
 
@@ -8,7 +9,7 @@
             <img class="img-responsive" minimal-lightbox class="b-link-fade b-animate-go"
                  src="/images/{{ $product->name .'.'. $product->image_extension . '?' . 'time='. time() }}"/>
             <h3>{{$product->name}}</h3>
-            <h4>Rp. {{$product->price}}</h4>
+            <h4>Rp. {{$product->price}}</h4><hr>
             <small>{!! str_limit($product->description, 250) !!}</small>
         </article>
         @endforeach

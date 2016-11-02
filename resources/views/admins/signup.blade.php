@@ -1,5 +1,6 @@
 @extends("template.master")
 @section("content")
+    @include('flash::message')
 
     {!! Form::open(['route' => 'signup.store', 'class' => 'form-horizontal', 'role' => 'form']) !!}
 
