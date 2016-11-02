@@ -8,6 +8,7 @@
         <link href="/css/material/bootstrap-material-design.css" rel="stylesheet">
         <link href="/css/material/ripples.css" rel="stylesheet">
         <link href="/css/custom.css" rel="stylesheet">
+        <link href="/css/pinterest.css" rel="stylesheet">
         {{--CSS--}}
 
         {{--JS--}}
@@ -16,6 +17,7 @@
         <script src="/js/material/material.js"></script>
         <script src="/js/material/ripples.js"></script>
         <script src="/js/materialcustom.js"></script>
+        <script src="/js/pinterest.js"></script>
         {{--JS--}}
     </head>
     <body>
