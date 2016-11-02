@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Files;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use Sentinel;
+use Image;
+use App\Http\Requests\ProductRequest;
 use App\Products;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -24,7 +28,7 @@ class ProductsController extends Controller
     public function index()
     {
         $products = Products::all();
-        return  view('admins.products',['products' => $products]);
+        return  view('admins.list-product',['products' => $products]);
     }
 
     /**
@@ -34,7 +38,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('admins.new-product');
+        return view('admins.new-products');
     }
 
     /**
@@ -43,35 +47,41 @@ class ProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-
-        //Upload File
-        $file = Request::file('file');
-        $extension = $file->getClientOriginalExtension();
-        Storage::disk('local')->put($file->getFilename().'.'.$extension, File::get($file));
-
-        $entry = new \App\Files();
-        $entry->mime = $file->getClientMimeType();
-        $entry->original_filename = $file->getClientOriginalName();
-        $entry->filename = $file->getFilename().'.'.$extension;
-
-        $entry->save();
+        //Create New Product
+        $product = new Products([
+           'name' => $request->get('name'),
+            'description' => $request->get('description'),
+            'price' => $request->get('price'),
+            'image_extension' => $request->file('image')->getClientOriginalExtension()
+        ]);
         //
 
-        //Create New Product
-        $product = new Products();
-        $product->file_id = $entry->id;
-        $product->name = Request::input('name');
-        $product->description = Request::input('description');
-        $product->price = Request::input('price');
-        $product->img_url = Request::input('img_url');
+        //Upload File
 
+        $pathFolder = '/images/';
+        $pathFolderThumb = '/images/thumbnail/';
+
+        $product->image_path = $pathFolder;
         $product->save();
+
+        $file = Input::file('image');
+
+        $productName = $product->name;
+        $productDesc = $product->description;
+        $productPrice = $product->price;
+        $extension = $request->file('image')->getClientOriginalExtension();
+
+        $image = Image::make($file->getRealPath());
+
+        $image->save(public_path(). $pathFolder. $productName.'.'.$extension)
+            ->resize(100,200)
+            ->save(public_path(). $pathFolderThumb. 'thumb-'.$productName.'.'. $extension);
         //
 
         flash('New Product Has Created','success');
-        return redirect('/admins/products');
+        return redirect()->route('list_products', [$product]);
     }
 
     /**
@@ -116,8 +126,21 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
+        $product = Products::finOrFail($id);
+        $thumbpath = $product->image_path.'thumbnail/';
+
+        File::delete(public_path($product->image_path).
+            $product->name. '.' .
+            $product->image_extension);
+
+        File::delete(public_path($thumbpath). 'thumb-' .
+            $product->name. '.' .
+            $product->image_extension);
+
         Products::destroy($id);
+
+        return redirect()->route('list_products');
         flash('The Product Has Deleted','info');
-        return redirect('/admin/products');
+
     }
 }

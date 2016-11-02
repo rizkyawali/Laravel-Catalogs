@@ -23,7 +23,7 @@
 
     <div class="container clearfix">
         <div class="row row-offcanvas row-offcanvas-left ">
-            <div id="main-content" class="col-xs-12 col-sm-6 main pull-right">
+            <div id="main-content">
                 <div class="panel-body">
                     @if (Session::has('error'))
                         <div class="session-flash alert-danger">

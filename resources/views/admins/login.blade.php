@@ -11,7 +11,7 @@
     </div>
 
     <div class="form-group">
-        {!! Form::password('email', array('class' => 'form-control','placeholder' => 'Your Password')) !!}
+        {!! Form::password('password', array('class' => 'form-control','placeholder' => 'Your Password')) !!}
         <div class="text-danger">{!! $errors->first('password') !!}</div>
         <div class="clear"></div>
     </div>

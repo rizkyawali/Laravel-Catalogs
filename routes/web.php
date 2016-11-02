@@ -27,3 +27,10 @@ Route::get('login','LoginController@login')->name('login');
 Route::post('login','LoginController@login_store')->name('login.store');
 Route::get('logout','LoginController@logout')->name('logout');
 //
+
+//Products Route
+Route::get('list_products','ProductsController@index')->name('list_products');
+Route::resource('products','ProductsController');
+Route::get('new_product','ProductsController@create')->name('new_product');
+Route::post('/admin/product/save','ProductsController@store')->name('add_product.store');
+//

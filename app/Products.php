@@ -7,8 +7,12 @@ use App\Files;
 
 class Products extends Model
 {
-    public function file()
-    {
-        return $this->belongsTo('App\Files');
-    }
+
+    protected $table = 'products';
+
+    protected $fillable = ['name',
+        'description',
+        'price',
+        'image_path',
+        'image_extension'];
 }
