@@ -15,7 +15,7 @@ class UsersController extends Controller
 
     public function signup_store(UserRequest $request)
     {
-        Sentinel::registerAndActivate($request);
+        Sentinel::registerAndActivate($request->all());
         flash('Success Create New User','success');
         return redirect()->back();
     }

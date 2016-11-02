@@ -33,8 +33,7 @@
     </div>
 
     <div class="form-group">
-        <div class="col-lg-3"></div>
-        {!! Form::submit('Sign Up', null, array('class' => 'btn btn-raised btn-primary')) !!}
+        {!! Form::submit('Sign Up', array('class' => 'btn btn-raised btn-primary')) !!}
         <div class="clear"></div>
     </div>
 
