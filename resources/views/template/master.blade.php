@@ -7,8 +7,8 @@
         <link href="/css/bootstrap/bootstrap.css" rel="stylesheet">
         <link href="/css/material/bootstrap-material-design.css" rel="stylesheet">
         <link href="/css/material/ripples.css" rel="stylesheet">
-        <link href="/css/custom.css" rel="stylesheet">
         <link href="/css/pinterest.css" rel="stylesheet">
+        <link href="/css/navigation.css" rel="stylesheet">
         {{--CSS--}}
 
         {{--JS--}}
@@ -18,27 +18,57 @@
         <script src="/js/material/ripples.js"></script>
         <script src="/js/materialcustom.js"></script>
         <script src="/js/pinterest.js"></script>
+        <script src="/js/navigation.js"></script>
         {{--JS--}}
     </head>
     <body>
-    @include('template.navbar')
+    <div id="wrapper">
+        <div class="overlay"></div>
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+                @if (Sentinel::check())
+                    <li class="sidebar-brand">
+                        <a>{!! Sentinel::getUser()->first_name !!} {!! Sentinel::getUser()->last_name !!}</a>
+                    </li>
+                    <div class="dropdown-header">{!! Sentinel::getUser()->email !!}</div><br/>
 
-    <div class="container clearfix">
-        <div class="row row-offcanvas row-offcanvas-left ">
-            <div id="main-content">
-                <div class="panel-body">
-                    @if (Session::has('error'))
-                        <div class="session-flash alert-danger">
-                            {{Session::get('error')}}
-                        </div>
-                    @endif
-                    @if (Session::has('notice'))
-                        <div class="session-flash alert-info">
-                            {{Session::get('notice')}}
-                        </div>
-                    @endif
 
-                    @yield("content")
+                    <li>{!! link_to(route('home'), 'Home') !!}</li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Artikel<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li class="dropdown-header">Manage Product</li>
+                            <li>{!! link_to(route('list_products'), 'List Products') !!}}</li>
+                            <li>{!! link_to(route('new_product'), 'Add Product') !!}</li>
+                        </ul>
+                    </li>
+                    <li>{!! link_to(route('logout'), "Logout") !!}</li>
+                @else
+                    <li>
+                        <div class="sidebar-brand"><a href="#" class="artikel-link"><h3>Laravel Task 4</h3></a></div>
+                    <li>{!! link_to(route('home'), 'Home') !!}</li>
+                    <li>{!! link_to(route('login'), 'Login') !!}</li>
+                    <li>{!! link_to(route('signup'), 'Signup') !!}</li>
+                    </li>
+                @endif
+            </ul>
+        </nav>
+        <div id="page-content-wrapper">
+            <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+                <span class="hamb-middle"></span>
+                <span class="hamb-bottom"></span>
+            </button>
+        </div>
+
+
+        <div id="page-content-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        @yield ("content")
+                    </div>
                 </div>
             </div>
         </div>
