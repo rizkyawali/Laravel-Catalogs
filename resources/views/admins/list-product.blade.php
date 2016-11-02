@@ -1,6 +1,6 @@
 @extends("template.master")
 @section("content")
-
+        <div class="row col-lg-12">
             <table class="table table-striped">
                 <thead>
                     <td>Name</td>
@@ -15,9 +15,7 @@
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->price }}</td>
                             <td>
-                                <a href="/images/{{ $product->id }}">
-                                    <img src="/images/thumbnail/{{ 'thumb-' .$product->name .'.'. $product->image_extension . '?' . 'time='. time() }}"/></a>
-                            </td>
+                                <img class="img-responsive" minimal-lightbox class="b-link-fade b-animate-go" src="/images/thumbnail/{{ 'thumb-' .$product->name .'.'. $product->image_extension . '?' . 'time='. time() }}">
                             <td>
                                 {!! Form::model($product, ['route' => ['products.destroy', $product->id], 'method' => 'DELETE']) !!}
                                 <div class="form-group">
@@ -28,7 +26,7 @@
 
                     @endforeach
                 </tbody>
-
             </table>
-
+        </div>
+        <script src="js/minimal.lightbox.js"></script>
 @stop

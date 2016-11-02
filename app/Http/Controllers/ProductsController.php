@@ -76,7 +76,7 @@ class ProductsController extends Controller
         $image = Image::make($file->getRealPath());
 
         $image->save(public_path(). $pathFolder. $productName.'.'.$extension)
-            ->resize(100,200)
+            ->resize(20,20)
             ->save(public_path(). $pathFolderThumb. 'thumb-'.$productName.'.'. $extension);
         //
 

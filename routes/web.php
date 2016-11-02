@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('home','MainController@index')->name('home');
+Route::get('/', 'MainController@index')->name('home');
 
 //SignUp Route
 Route::get('signup','UsersController@signup')->name('signup');

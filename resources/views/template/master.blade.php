@@ -36,10 +36,9 @@
                     <li>{!! link_to(route('home'), 'Home') !!}</li>
 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Artikel<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Product<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li class="dropdown-header">Manage Product</li>
-                            <li>{!! link_to(route('list_products'), 'List Products') !!}}</li>
+                            <li>{!! link_to(route('list_products'), 'List Products') !!}</li>
                             <li>{!! link_to(route('new_product'), 'Add Product') !!}</li>
                         </ul>
                     </li>
