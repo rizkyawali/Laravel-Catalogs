@@ -5,3 +5,17 @@
   http://bootsnipp.com/
   http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html
   http://getbootstrap.com/
+  
+# Installation
+
+  Create the blank database, in the case my db name is "db_catalogs"
+  
+  Run at command line :
+  
+  ```shell
+  composer update
+  ```
+  
+  ```shell
+  php artisan migrate
+  ```
