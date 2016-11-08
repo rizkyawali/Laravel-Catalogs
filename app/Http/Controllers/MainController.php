@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Comments;
 use App\Products;
 use Illuminate\Http\Request;
-use DB;
+use Redis;
 
 class MainController extends Controller
 {

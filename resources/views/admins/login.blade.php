@@ -29,5 +29,12 @@
         <div class="clear"></div>
     </div>
 
+    <div class="text-info">
+        <div class="col-lg-6">
+            {!! link_to(route('forgotpasswords.create'), 'Forgot Password ?') !!}
+        </div>
+        <div class="clear"></div>
+    </div>
+
     {!! Form::close() !!}
 @stop
