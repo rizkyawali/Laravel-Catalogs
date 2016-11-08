@@ -1,4 +1,4 @@
-# LaraShop Katalogs
+# Laravel Catalogs
   The Templates is combining with bootstrap, fezvrasta bootstrap material design, and some cool stuffs from www.bootsnipp.com.
   
   [![LaraCatalogs.jpg](https://s22.postimg.org/3thjremj5/Lara_Catalogs.jpg)](https://postimg.org/image/3thjremj1/)
