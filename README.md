@@ -1,7 +1,7 @@
 # LaraShop Katalogs
   The Templates is combining with bootstrap, fezvrasta bootstrap material design, and some cool stuffs from www.bootsnipp.com.
   
-  ![ScreenShot](http://imgur.com/a/KB8yY)
+  ![Settings Window](http://imgur.com/a/KB8yY)
   
 # Get Templates
   http://bootsnipp.com/
