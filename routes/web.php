@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/', 'MainController@index')->name('home');
+Route::resource('front-route', 'MainController');
 
 //SignUp Route
 Route::get('signup','UsersController@signup')->name('signup');
@@ -33,4 +34,8 @@ Route::get('list_products','ProductsController@index')->name('list_products');
 Route::resource('products','ProductsController');
 Route::get('new_product','ProductsController@create')->name('new_product');
 Route::post('/admin/product/save','ProductsController@store')->name('add_product.store');
+//
+
+//Comments Route
+Route::resource('comments', 'CommentsController');
 //

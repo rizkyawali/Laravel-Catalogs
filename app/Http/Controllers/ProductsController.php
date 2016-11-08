@@ -25,10 +25,11 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $products = Products::all();
         return  view('admins.list-product',['products' => $products]);
+        $products = Products::paginate(2);
     }
 
     /**
@@ -76,7 +77,7 @@ class ProductsController extends Controller
         $image = Image::make($file->getRealPath());
 
         $image->save(public_path(). $pathFolder. $productName.'.'.$extension)
-            ->resize(20,20)
+            ->resize(100,100)
             ->save(public_path(). $pathFolderThumb. 'thumb-'.$productName.'.'. $extension);
         //
 
@@ -92,7 +93,7 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -103,7 +104,8 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Products::find($id);
+        return view('admins.edit-product')->with('product', $product);
     }
 
     /**
@@ -113,9 +115,29 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
-        //
+        $product = Products::findOrFail($id);
+        $product->save();
+
+        $imageProduct = '/images/';
+        $pathThumbProduct = '/images/thumbnail/';
+
+        $file = Input::file('image');
+
+        $productName = $product->name;
+        $extension = $request->file('image')->getClientOriginalExtension();
+
+        $image = Image::make($file->getRealPath());
+
+        $image->save(public_path() .$imageProduct .$productName. '.' .$extension)
+            ->resize(100,100)
+            ->save(public_path() .$pathThumbProduct. 'thumb-' .$productName. '.' .$extension);
+
+
+        $products = Products::all();
+        return  view('admins.list-product',['products' => $products]);
+
     }
 
     /**
@@ -126,7 +148,7 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        $product = Products::finOrFail($id);
+        $product = Products::findOrFail($id);
         $thumbpath = $product->image_path.'thumbnail/';
 
         File::delete(public_path($product->image_path).

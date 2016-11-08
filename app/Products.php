@@ -15,4 +15,14 @@ class Products extends Model
         'price',
         'image_path',
         'image_extension'];
+
+    public static function valid()
+    {
+        return array('content' => 'required');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comments', 'product_id');
+    }
 }

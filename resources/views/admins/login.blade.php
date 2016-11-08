@@ -18,8 +18,8 @@
 
     <div class="form-group">
         {!! Form::label('remember', 'Remember Me', array('class' => 'col-lg-3 control-label')) !!}
-        <div class="col-lg-4">
-            {!! Form::checkbox('remember', null, array('class' => 'form-control')) !!}
+        <div class="col-lg-1">
+            {!! Form::checkbox('remember', null, array('class' => 'form-control' )) !!}
         </div>
         <div class="clear"></div>
     </div>

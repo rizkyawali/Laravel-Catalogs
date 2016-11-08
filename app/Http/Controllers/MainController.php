@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Comments;
 use App\Products;
 use Illuminate\Http\Request;
+use DB;
 
 class MainController extends Controller
 {
@@ -12,10 +14,11 @@ class MainController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $products = Products::all();
-        return view ('frontend.index', ['products' => $products]);
+        return view ('frontend.index')->with('products', $products);
+        $products = Products::paginate(2);
     }
 
     /**
@@ -47,7 +50,13 @@ class MainController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Products::find($id);
+        $comments = Products::find($id)->comments->sortBy('Comments.created_at');
+        return view('frontend.show')
+            ->with('product', $product)
+            ->with('comments', $comments);
+        $comments = Comments::paginate(5);
+
     }
 
     /**

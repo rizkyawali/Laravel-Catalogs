@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>LaraShop</title>
+        <title>LaraCatalogs</title>
 
         {{--CSS--}}
         <link href="/css/bootstrap/bootstrap.css" rel="stylesheet">
@@ -9,6 +9,7 @@
         <link href="/css/material/ripples.css" rel="stylesheet">
         <link href="/css/pinterest.css" rel="stylesheet">
         <link href="/css/navigation.css" rel="stylesheet">
+        {{--<link href="/css/comments.css" rel="stylesheet">--}}
         {{--CSS--}}
 
         {{--JS--}}
@@ -45,7 +46,7 @@
                     <li>{!! link_to(route('logout'), "Logout") !!}</li>
                 @else
                     <li>
-                        <div class="sidebar-brand"><a href="#" class="artikel-link"><h3>Laravel Task 4</h3></a></div>
+                        <div class="sidebar-brand"><h4>{!! link_to(route('home'), 'LaraCatalogs') !!}</h4></div>
                     <li>{!! link_to(route('home'), 'Home') !!}</li>
                     <li>{!! link_to(route('login'), 'Login') !!}</li>
                     <li>{!! link_to(route('signup'), 'Signup') !!}</li>
@@ -71,6 +72,11 @@
                 </div>
             </div>
         </div>
+    </div>
+    <br><br><br><br><br><br>
+
+    <div class="panel-footer">
+        <p><center>Created By Rizky Awali</center></p>
     </div>
 
     </body>

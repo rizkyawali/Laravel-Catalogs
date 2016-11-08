@@ -8,11 +8,16 @@
         <article class="white-panel">
             <img class="img-responsive" minimal-lightbox class="b-link-fade b-animate-go"
                  src="/images/{{ $product->name .'.'. $product->image_extension . '?' . 'time='. time() }}"/>
-            <h3>{{$product->name}}</h3>
-            <h4>Rp. {{$product->price}}</h4><hr>
-            <small>{!! str_limit($product->description, 250) !!}</small>
+            <h4>{{$product->name}}</h4>
+            <bold>Rp. {{$product->price}}</bold><hr>
+            <small>
+                {!! str_limit($product->description, 50) !!}
+                {!! link_to(route('front-route.show', $product->id),'Read More') !!}
+            </small>
         </article>
         @endforeach
     </section>
     <script src="js/minimal.lightbox.js"></script>
+
+    {{--{!! $products->render() !!}--}}
 @stop
